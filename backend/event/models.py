@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from user_management import models as user_management_models
 from django.core.exceptions import ValidationError
+from django.conf import settings
 
 # Create your models here.
 
@@ -13,56 +14,53 @@ class EventModel(models.Model):
     location = models.CharField(max_length=255)
     organizer = models.ForeignKey(user_management_models.UserModel, on_delete=models.CASCADE, related_name='events')
     capacity = models.PositiveIntegerField()
-    ticket_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    # ticket_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='event_images/', null=True, blank=True)
 
     def __str__(self):
         return self.name
+
+
+REGULAR = 'Regular'
+VIP = 'VIP'
+EARLY_BIRD = 'Early Bird'
     
+TICKET_TYPE_CHOICES = [
+    (REGULAR, 'Regular'),
+    (VIP, 'VIP'),
+    (EARLY_BIRD, 'Early Bird'),
+]
 
-    # def clean(self):
-    #     if self.start_time >= self.end_time:
-    #         return ValidationError("Start time cannot be earlier than end time")
-    #     overlapping_events = self.objects.filter(
-    #         location=self.location,
-    #         start_time__lt=self.end_time,
-    #         end_time__gt=self.start_time
-    #     ).exclude(id=self.id)
+class TicketModel(models.Model):
+    event = models.ForeignKey(EventModel, on_delete=models.CASCADE, related_name='ticket')
+    ticket_type = models.CharField(choices=TICKET_TYPE_CHOICES,max_length=10)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    available_capacity = models.PositiveIntegerField() #add ths ifield automatically while saving the to db
 
-    #     if overlapping_events.exists():
-    #         return ValidationError("There is already an event scheduled at this location during this time.")
-    #     super().clean()
-    
-    # def save(self, *args, **kwargs):
-    #     self.clean()
-    #     super().save(*args, **kwargs)
+    def __str__(self):
+        return f"{self.ticket_type} - {self.event.name}"
 
-    '''
-    class Registration(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    ticket_number = models.CharField(max_length=100, unique=True)
+class RegistrationModel(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,)
+    event = models.ForeignKey(EventModel, on_delete=models.CASCADE)
+    ticket = models.ForeignKey(TicketModel, on_delete=models.CASCADE)
     registration_date = models.DateTimeField(auto_now_add=True)
     is_attended = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.user.username} - {self.event.name}"
-    '''
+    
 
 
 
-    '''
-    class Ticket(models.Model):
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='tickets')
-    ticket_type = models.CharField(max_length=50)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    available_quantity = models.PositiveIntegerField()
 
-    def __str__(self):
-        return f"{self.ticket_type} - {self.event.name}"
-    '''
+    
+
+
+
+
 
     '''
     class Notification(models.Model):

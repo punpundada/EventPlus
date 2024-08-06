@@ -13,6 +13,7 @@ class EventCreateView(generics.CreateAPIView):
     def perform_create(self, serializer):
         serializer.save(organizer=self.request.user)
 
+        
 class EventListView(generics.ListAPIView):
     queryset = models.EventModel.objects.all()
     serializer_class = serializers.EventSerializer

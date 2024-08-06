@@ -154,7 +154,8 @@ DATABASES ={
 is_development = int(os.getenv("IS_DEVELOPMENT", "0")) == 1
 
 SIMPLE_JWT={
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=5) if is_development else timedelta(minutes=5),
+    # "ACCESS_TOKEN_LIFETIME": timedelta(days=5) if is_development else timedelta(minutes=5),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=5) if is_development else timedelta(days=5),
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
