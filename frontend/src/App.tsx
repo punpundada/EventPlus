@@ -5,6 +5,9 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/auth/Login";
 import Home from "./pages/Home";
 import EventList from "./pages/events/List";
+import ProtectedRoute from "./components/ProtectedRoutes";
+import EventCreate from "./pages/events/Create";
+import EventDetails from "./pages/events/Details";
 
 const router = createBrowserRouter([
   {
@@ -17,12 +20,29 @@ const router = createBrowserRouter([
       },
       {
         path: "dashboard",
-        element: <Dashboard />,
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: "events",
-        element: <EventList />,
-      },
+        path:"events",
+        children:[
+          {
+            index:true,
+            element:<EventList />
+          },
+          {
+            path:":id",
+            element:<EventDetails />
+          },
+          {
+            path:"create",
+            element:<EventCreate/>
+          }
+        ]
+      }
     ],
   },
   {

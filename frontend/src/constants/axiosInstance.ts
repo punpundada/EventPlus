@@ -3,9 +3,6 @@ import { ACCESS_TOKEN } from "./tokenName";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL!,
-  headers: {
-    "Content-Type": "appication/json",
-  },
 });
 
 axiosInstance.interceptors.request.use(
@@ -22,6 +19,7 @@ axiosInstance.interceptors.request.use(
     }
   },
   (error) => {
+    console.error(error)
     return Promise.reject(error);
   }
 );

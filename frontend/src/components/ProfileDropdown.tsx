@@ -8,9 +8,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "@/context/authContext";
+import AuthService from "@/services/authService";
 
 const ProfileDropdown = () => {
   const navigate = useNavigate();
+  const {isAuthenticated} = useAuthContext()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -24,9 +27,11 @@ const ProfileDropdown = () => {
         <DropdownMenuSeparator />
         <DropdownMenuItem>Profile</DropdownMenuItem>
         <DropdownMenuItem>Events</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => navigate("/auth/login")}>
+       {isAuthenticated ? <DropdownMenuItem onClick={AuthService.logout}>
+        Logout
+       </DropdownMenuItem> : <DropdownMenuItem onClick={() => navigate("/auth/login")}>
           Login
-        </DropdownMenuItem>
+        </DropdownMenuItem>}
       </DropdownMenuContent>
     </DropdownMenu>
   );

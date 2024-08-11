@@ -2,11 +2,17 @@ import InputControl from "@/components/formcontrol/Input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
+import { useAuthContext } from "@/context/authContext";
+import AuthService from "@/services/authService";
 import { loginSchema, LoginType } from "@/types/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { setData } = useAuthContext();
   const form = useForm<LoginType>({
     defaultValues: {
       password: "",
@@ -16,9 +22,18 @@ const Login = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (data: LoginType) => {
-    console.log(data);
+  const onSubmit = async (data: LoginType) => {
+    const isSuccess = await AuthService.login(data);
+    if (isSuccess) {
+      navigate("/");
+      setData(true, null);
+    }
   };
+
+  React.useEffect(()=>{
+    console.log(form.formState.errors);
+  },[form.formState.errors])
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
       <div className="hidden md:block">image</div>
@@ -42,6 +57,7 @@ const Login = () => {
                   name="password"
                   placeholder="Enter Password"
                   label="Password"
+                  type="password"
                 />
                 <Button>Login</Button>
               </form>
