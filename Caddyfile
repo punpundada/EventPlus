@@ -1,0 +1,13 @@
+{
+    email prajwalparashkar100@gmail.com
+}
+
+http://localhost:9000 {
+    route /api/* {
+        reverse_proxy http://backend:8000
+    }
+
+    # route * {
+    #     reverse_proxy http://frontend:3000
+    # }
+}
