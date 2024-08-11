@@ -24,4 +24,17 @@ export default class EventService {
       return false;
     }
   };
+
+  static getEventById = async (id: number) => {
+    try {
+      const response = await axiosInstance.get(`/events/${id}/`);
+      if (response.data) {
+        return response.data as EventType;
+      }
+      return undefined;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
+  };
 }

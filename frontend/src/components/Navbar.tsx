@@ -2,6 +2,7 @@ import { Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -20,29 +21,37 @@ const Navbar = () => {
           </Button>
         </SheetTrigger>
         <SheetContent side={"left"} className="w-[280px]">
-          <SheetHeader>Header</SheetHeader>
-          <SheetDescription>Description</SheetDescription>
-          <ul className="space-y-4">
-            <li>
-              <Button asChild variant={"ghost"}>
-                <Link to={"/"}>Home</Link>
-              </Button>
-            </li>
-            <li>
-              <Button asChild variant={"ghost"}>
-                <Link to={"/register"}>Register</Link>
-              </Button>
-            </li>
-            <li>
-              <Button asChild variant={"ghost"}>
-                <Link to={"/events"}>Events</Link>
-              </Button>
-            </li>
-            <li>
-              <Button asChild variant={"ghost"}>
-                <Link to={"/dashboard"}>Dashboard</Link>
-              </Button>
-            </li>
+          <SheetHeader className="text-2xl text-start">Event Plus</SheetHeader>
+          <SheetDescription></SheetDescription>
+          <ul className="space-y-4 mt-4">
+            <SheetClose asChild>
+              <li className="w-full">
+                <Button asChild variant={"ghost"} className="w-full" size={'lg'}>
+                  <Link to={"/"} >Home</Link>
+                </Button>
+              </li>
+            </SheetClose>
+            <SheetClose asChild>
+              <li className="w-full">
+                <Button asChild variant={"ghost"} className="w-full" size={'lg'}>
+                  <Link to={"/register"} className="w-full">Register</Link>
+                </Button>
+              </li>
+            </SheetClose>
+            <SheetClose asChild>
+              <li className="w-full">
+                <Button asChild variant={"ghost"} className="w-full">
+                  <Link to={"/events"}>Events</Link>
+                </Button>
+              </li>
+            </SheetClose>
+            <SheetClose asChild>
+              <li className="w-full">
+                <Button asChild variant={"ghost"} className="w-full">
+                  <Link to={"/dashboard"} className="w-full">Dashboard</Link>
+                </Button>
+              </li>
+            </SheetClose>
           </ul>
         </SheetContent>
       </Sheet>
@@ -68,7 +77,7 @@ const Navbar = () => {
           </Button>
         </li>
       </ul>
-      <ProfileDropdown/>
+      <ProfileDropdown />
     </nav>
   );
 };

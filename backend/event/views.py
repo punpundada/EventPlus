@@ -33,10 +33,16 @@ class TicketListByEventView(generics.ListAPIView):
 class RegistrationCreateView(generics.ListCreateAPIView):
     queryset = models.RegistrationModel.objects.all()
     serializer_class = serializers.RegistrationCreateSerializer
-    permission_classes=(permissions.IsAuthenticated,)
+    # permission_classes=(permissions.IsAuthenticated,)
 
     def perform_create(self,serializer):
         user = self.request.user
         print("Request data:", self.request.data)
         print("Validated data before save:", serializer.validated_data)
         serializer.save(user_id=user.id)
+
+class EventByIdVIew(generics.RetrieveAPIView):
+    queryset = models.EventModel.objects.all()
+    serializer_class = serializers.EventSerializer
+    lookup_field="id"
+    # permission_classes=(permissions.IsAuthenticated,)
