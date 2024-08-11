@@ -46,6 +46,7 @@ class RegistrationModel(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,)
     event = models.ForeignKey(EventModel, on_delete=models.CASCADE)
     ticket = models.ForeignKey(TicketModel, on_delete=models.CASCADE)
+    booked_tickets = models.IntegerField(blank=False,default=0)
     registration_date = models.DateTimeField(auto_now_add=True)
     is_attended = models.BooleanField(default=False)
 

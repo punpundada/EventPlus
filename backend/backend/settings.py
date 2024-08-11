@@ -29,9 +29,7 @@ SECRET_KEY = "django-insecure-!tw*$@g(_u(7=$-vi5b*j5zp4!k4$)xhs+lpjqrp-!ybi(%jr7
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -46,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     "user_management",
     "event",
+    "corsheaders"
 ]
 
 MIDDLEWARE = [
@@ -56,6 +55,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "backend.urls"
@@ -137,7 +137,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    "DEFAULT_PERMISSIONS_CLASSES":[
+        "rest_framework.permissions.IsAuthenticated"
+    ]
 }
 
 DATABASES ={
@@ -154,11 +157,8 @@ DATABASES ={
 is_development = int(os.getenv("IS_DEVELOPMENT", "0")) == 1
 
 SIMPLE_JWT={
-    # "ACCESS_TOKEN_LIFETIME": timedelta(days=5) if is_development else timedelta(minutes=5),
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=5),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=5) if is_development else timedelta(days=5),
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=5) if is_development else timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=5),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
     'UPDATE_LAST_LOGIN': False,
@@ -181,3 +181,6 @@ SIMPLE_JWT={
 }
 
 AUTH_USER_MODEL = 'user_management.UserModel'
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWS_CREDENTIALS = True
