@@ -31,6 +31,7 @@ export const eventSchema = z.object({
     .number({ required_error: "Please enter Capacity" })
     .min(1, "Please enter capacity")
     .positive("capacity cannot be negative"),
+    image:z.any().optional()
 });
 
 export type EventCreateType = z.infer<typeof eventSchema>;

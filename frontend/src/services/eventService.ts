@@ -12,7 +12,7 @@ export default class EventService {
     }
   };
 
-  static saveEvent = async (event: EventCreateType) => {
+  static saveEvent = async (event: FormData) => {
     try {
       const response = await axiosInstance.post("/events/create/", event);
       if (response.data) {
