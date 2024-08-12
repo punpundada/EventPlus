@@ -8,12 +8,14 @@ import {
   CardTitle,
 } from "./ui/card";
 import { EventType } from "@/types/event";
+import { motion } from "framer-motion";
 
 const EventCard = (event: EventType) => {
   const navigate = useNavigate()
   return (
-    <div>
-      <Card className="cursor-pointer" onClick={()=>navigate(`/events/${event.id}`)}>
+    // <motion.div className="hover:rotate-2 transition-all">
+    <motion.div whileHover={{rotate:2}} whileFocus={{rotate:2}}>
+      <Card className="cursor-pointer" onClick={() => navigate(`/events/${event.id}`)}>
         <CardHeader>
           <CardTitle>{event.name}</CardTitle>
           <CardDescription>{event.description}</CardDescription>
@@ -25,7 +27,7 @@ const EventCard = (event: EventType) => {
           </span>
         </CardFooter>
       </Card>
-    </div>
+    </motion.div>
   );
 };
 

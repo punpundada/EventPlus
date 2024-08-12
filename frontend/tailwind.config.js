@@ -17,6 +17,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily:{
+        Archivo_Black:"Archivo Black"
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

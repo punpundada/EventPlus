@@ -13,7 +13,7 @@ import ProfileDropdown from "./ProfileDropdown";
 
 const Navbar = () => {
   return (
-    <nav className="h-14 bg-accent text-accent-foreground flex justify-between items-center px-4">
+    <nav className="h-14 flex justify-between items-center px-4">
       <Sheet>
         <SheetTrigger>
           <Button variant={"ghost"} className="md:hidden">
@@ -57,22 +57,22 @@ const Navbar = () => {
       </Sheet>
       <ul className="space-x-4 hidden md:flex">
         <li>
-          <Button asChild variant={"ghost"}>
+          <Button asChild variant={"ghost"} className="text-lg">
             <Link to={"/"}>Home</Link>
           </Button>
         </li>
         <li>
-          <Button asChild variant={"ghost"}>
+          <Button asChild variant={"ghost"} className="text-lg">
             <Link to={"/register"}>Register</Link>
           </Button>
         </li>
         <li>
-          <Button asChild variant={"ghost"}>
+          <Button asChild variant={"ghost"} className="text-lg">
             <Link to={"/events"}>Events</Link>
           </Button>
         </li>
         <li>
-          <Button asChild variant={"ghost"}>
+          <Button asChild variant={"ghost"} className="text-lg">
             <Link to={"/dashboard"}>Dashboard</Link>
           </Button>
         </li>

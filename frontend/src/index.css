@@ -5,19 +5,19 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
+    --background: 7 80% 98%;
+    --foreground: 222.2 84% 4.9%; /* black */
+    --card: 7 84% 88%;
+    --card-foreground: 222.2 84% 4.9%; /* black */
+    --popover: 7 80% 98%;
+    --popover-foreground: 222.2 84% 4.9%; /* black */
+    --primary: 15 74% 58%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
+    --secondary: 69 83% 79%;            /*210 40% 96.1%*/
+    --secondary-foreground: 222.2 47.4% 11.2%; /*222.2 47.4% 11.2%*/ /*Not changed*/
+    --muted: 69 83% 79%;
+    --muted-foreground: 24 16% 46%; /*215.4 16.3% 46.9%;*/
+    --accent: 69 83% 79%;
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -69,3 +69,6 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* @import url('https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap');
