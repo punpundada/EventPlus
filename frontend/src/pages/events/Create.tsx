@@ -38,6 +38,7 @@ const EventCreate = () => {
   const onSubmit = async (params: EventCreateType) => {
     console.log("Image", params.image);
     const formdata = new FormData();
+    params.image = image
     Object.entries(params).forEach(([key, value]) => {
       if (key.endsWith("time")) {
         formdata.append(key, new Date(value).toISOString());

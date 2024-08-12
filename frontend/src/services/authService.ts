@@ -2,6 +2,7 @@ import axiosInstance from "@/constants/axiosInstance";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "@/constants/tokenName";
 import { LoginType } from "@/types/auth";
 
+
 export default class AuthService {
   static login = async (logindata: LoginType) => {
     try {

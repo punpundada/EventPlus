@@ -1,5 +1,5 @@
 import axiosInstance from "@/constants/axiosInstance";
-import { EventCreateType, EventType } from "@/types/event";
+import { EventType } from "@/types/event";
 
 export default class EventService {
   static getList = async () => {

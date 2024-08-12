@@ -1,0 +1,19 @@
+# Base stage
+FROM node:20.16-alpine3.20 AS base
+WORKDIR /usr/src/app
+
+# Development stage
+FROM base AS development
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+EXPOSE 5173
+CMD [ "npm", "run", "dev" ]
+
+# Production stage
+FROM base AS production
+RUN npm install --global serve
+COPY --from=development /usr/src/app/dist /usr/src/app/dist
+EXPOSE 3000
+CMD ["serve","dist/"]
