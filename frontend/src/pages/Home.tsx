@@ -2,7 +2,7 @@
 import WordPullUp from "@/components/magicui/word-pull-up";
 import image from "@/assets/jakub-zerdzicki-ykgLX_CwtDw-unsplash.jpg";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { SquarePen } from "lucide-react";
+import { BellRing, PocketKnife, SquarePen } from "lucide-react";
 import { motion } from "framer-motion";
 
 
@@ -42,12 +42,12 @@ const Home = () => {
           <Card className="">
             <CardHeader>
               <CardTitle>
-                <SquarePen />
+                <PocketKnife />
               </CardTitle>
-              <CardDescription>Seamless Event Creation</CardDescription>
+              <CardDescription>Advanced Attendee Tools</CardDescription>
             </CardHeader>
             <CardContent>
-              Create and customize events effortlessly with our user-friendly interface. Choose from a variety of templates, set up event details, and manage everything from a single dashboard.
+              Manage registrations, track attendance, and communicate with your guests in real-time. Our platform provides powerful tools for handling all aspects of attendee management
             </CardContent>
           </Card>
         </motion.div>
@@ -56,12 +56,12 @@ const Home = () => {
           <Card className="">
             <CardHeader>
               <CardTitle>
-                <SquarePen />
+                <BellRing />
               </CardTitle>
-              <CardDescription>Seamless Event Creation</CardDescription>
+              <CardDescription>Instant Notifications</CardDescription>
             </CardHeader>
             <CardContent>
-              Create and customize events effortlessly with our user-friendly interface. Choose from a variety of templates, set up event details, and manage everything from a single dashboard.
+              Keep your attendees informed with automatic updates and notifications. Whether it’s a schedule change or important announcements, our system ensures everyone stays in the loop.
             </CardContent>
           </Card>
         </motion.div>

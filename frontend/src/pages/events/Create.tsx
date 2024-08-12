@@ -55,7 +55,7 @@ const EventCreate = () => {
   };
   return (
     <div className="flex justify-center items-center h-full">
-      <Card className="w-[90%] md:w-[80%] lg:w-[65%]">
+      <Card className="w-[90%] md:w-[80%] lg:w-[65%] bg-white">
         <CardHeader>
           <CardTitle>Event</CardTitle>
           <CardDescription>Save a new Event</CardDescription>
