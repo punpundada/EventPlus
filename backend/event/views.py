@@ -33,6 +33,7 @@ class TicketListByEventView(generics.ListAPIView):
 class RegistrationCreateView(generics.ListCreateAPIView):
     queryset = models.RegistrationModel.objects.all()
     serializer_class = serializers.RegistrationCreateSerializer
+    permission_classes = (permissions.AllowAny,)
     # permission_classes=(permissions.IsAuthenticated,)
 
     def perform_create(self,serializer):

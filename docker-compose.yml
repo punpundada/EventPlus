@@ -13,6 +13,8 @@ services:
       - ./db-data:/var/lib/postgresql/data
     ports:
       - "${POSTGRES_PORT}:5432"
+    networks:
+      - app_net
     healthcheck:
       test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'"]
       interval: 10s
@@ -38,6 +40,8 @@ services:
       # - ./backend/event_images:/app/event_images
     ports:
       - "8000:8000"
+    networks:
+      - app_net
     depends_on:
       db:
         condition: service_healthy
@@ -49,7 +53,28 @@ services:
       context: ./frontend
       dockerfile: dockerfile
       # target: development
+    networks:
+      - app_net
     environment:
       VITE_BASE_URL: http://backend/api
     ports:
       - "3000:3000"
+  
+  caddy:
+    image: caddy:2.8.4-alpine
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - $PWD/backend/event_images:/srv
+    ports:
+      - "9000:9000"
+    restart: unless-stopped
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - app_net
+
+
+networks:
+  app_net:
+    driver: bridge

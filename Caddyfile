@@ -7,7 +7,13 @@ http://localhost:9000 {
         reverse_proxy http://backend:8000
     }
 
-    # route * {
-    #     reverse_proxy http://frontend:3000
-    # }
+    route /event_images/* {
+        root * /backend/event_images
+        file_server
+        header Content-Type image/jpeg
+    }
+
+    route * {
+        reverse_proxy http://frontend:3000
+    }
 }

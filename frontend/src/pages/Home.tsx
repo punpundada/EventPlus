@@ -25,7 +25,7 @@ const Home = () => {
       <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-24">
 
         <motion.div whileHover={{ y: -140 }}>
-          <Card className="">
+          <Card className="cursor-pointer">
             <CardHeader>
               <CardTitle>
                 <SquarePen />
@@ -39,7 +39,7 @@ const Home = () => {
         </motion.div>
 
         <motion.div whileHover={{ y: -140 }}>
-          <Card className="">
+          <Card className="cursor-pointer">
             <CardHeader>
               <CardTitle>
                 <PocketKnife />
@@ -53,7 +53,7 @@ const Home = () => {
         </motion.div>
 
         <motion.div whileHover={{ y: -140 }}>
-          <Card className="">
+          <Card className="cursor-pointer">
             <CardHeader>
               <CardTitle>
                 <BellRing />

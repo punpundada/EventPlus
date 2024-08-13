@@ -10,6 +10,7 @@ import {
 } from "./ui/sheet";
 import { Link } from "react-router-dom";
 import ProfileDropdown from "./ProfileDropdown";
+import { ModeToggle } from "./mode-toggle";
 
 const Navbar = () => {
   return (
@@ -77,7 +78,10 @@ const Navbar = () => {
           </Button>
         </li>
       </ul>
+      <div className="space-x-4 flex justify-center">
+        <ModeToggle />
       <ProfileDropdown />
+      </div>
     </nav>
   );
 };

@@ -18,7 +18,8 @@ module.exports = {
     },
     extend: {
       fontFamily:{
-        Archivo_Black:"Archivo Black"
+        Archivo_Black:"Archivo Black",
+        Inter:"Inter"
       },
       colors: {
         border: "hsl(var(--border))",
