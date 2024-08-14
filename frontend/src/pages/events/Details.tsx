@@ -28,13 +28,13 @@ const EventDetails = () => {
         <img src={image} className="object-cover w-full h-full" />
       </div>
       <div>
-        <Card className="absolute top-[30%] left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-[90%] md:w-[65%]">
+        <div className="absolute top-[30%] left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-[90%] md:w-[65%]">
             <CardContent className="grid grid-cols-1 md:grid-cols-[.70fr_.30fr]">
               <div className="border-b md:border-l border-dashed border-transparent">mmainmainmainmainmainmainmainain</div>
               {/* <div className="border-l border-dashed border-transparent md:border-gray-300"></div> */}
               <div>seco</div>
             </CardContent>
-        </Card>
+        </div>
       </div>
   </div>
   );
